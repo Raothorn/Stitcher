@@ -1,0 +1,1 @@
+/home/gaston/Projects/Stitcher/Stitcher.Gui/Stitcher.Gui.Desktop/bin/Debug/net461/Stitcher.Gui.Desktop.exe

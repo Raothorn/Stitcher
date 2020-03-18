@@ -1,0 +1,8 @@
+# !/bin/bash
+
+file=$(realpath "$2")
+if test -f "$file"; then
+    mono /home/gaston/Projects/Stitcher/Stitcher.Gui/Stitcher.Gui.Desktop/bin/Debug/net461/Stitcher.Gui.Desktop.exe $1 $file
+else
+    echo "file doesn't exist"
+fi
