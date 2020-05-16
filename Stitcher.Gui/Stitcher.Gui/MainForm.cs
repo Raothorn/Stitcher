@@ -75,11 +75,25 @@ namespace Stitcher
                     project.SelectedSymbol = grid.SelectedValue.ToString();
                 };
 
+            grid.KeyDown += (s, e) =>
+                {
+                    e.Handled = true;
+                };
+
             return grid;
         }
 
         private Control MoveButtons(ProjectViewModel project)
         {
+
+            var selectLeastButton = new Button
+            {
+                Text = "Select Least"
+            };
+            selectLeastButton.Click += (s, e) => {
+                project.SelectLeastStitchesInWindow();
+            };
+
             return new StackLayout
             {
                 Padding = 10,
@@ -89,6 +103,7 @@ namespace Stitcher
                     MoveCommand.GetMoveButton(Direction.Down, project),
                     MoveCommand.GetMoveButton(Direction.Left, project),
                     MoveCommand.GetMoveButton(Direction.Right, project),
+                    selectLeastButton,
                 }
             };
         }

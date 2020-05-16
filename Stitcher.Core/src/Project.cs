@@ -94,6 +94,20 @@ namespace Stitcher.Core
             System.IO.File.WriteAllText(savePath, serialized);
         }
 
+        public int GetCountInRegion(string symbol, Rect region)
+        {
+            int count = 0;
+            for(int r = region.Y1; r < region.Y2; r++)
+            {
+                for(int c = region.X1; c < region.X2; c++)
+                {
+                    if(Pattern.GetSymbol(r,c) == symbol && GetCompletedState(r, c) == CompletedState.Uncompleted)
+                        count++;
+                }
+            }
+            return count;
+        }
+
         public static Project LoadFromFile(string filePath)
         {
             Project project = null;

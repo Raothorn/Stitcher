@@ -92,6 +92,25 @@ namespace Stitcher.Core
             _project.SaveProject(savePath);
         }
 
+        public void SelectLeastStitchesInWindow()
+        {
+            var symbols = GetAllSymbols();
+
+            int least = Int32.MaxValue;
+            string leastSymbol = symbols.First();
+            foreach(string symbol in symbols)
+            {
+                var count = _project.GetCountInRegion(symbol, Window);
+
+                if(count < least && count > 0)
+                {
+                    least = count;
+                    leastSymbol = symbol;
+                }
+            }
+            SelectedSymbol = leastSymbol;
+        }
+
         protected void OnPropertyChanged(string name = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
